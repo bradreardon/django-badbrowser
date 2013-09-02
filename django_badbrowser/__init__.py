@@ -10,7 +10,7 @@ def check_user_agent(user_agent, requirements):
     if not requirements:
         return True
     
-    if type(user_agent) == httpagentparser.Result or type(user_agent) == dict:
+    if type(user_agent) == getattr(httpagentparser, 'Result', dict):
         parsed = user_agent
     else:
         parsed = httpagentparser.detect(user_agent)
