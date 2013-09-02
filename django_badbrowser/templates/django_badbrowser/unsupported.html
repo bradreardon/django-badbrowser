@@ -1,5 +1,6 @@
 {% extends base_template %}
-{% load i18n %}
+{% load i18n static %}
+{% load url from future %}
 
 {% block extra_head %}
 <style type="text/css" media="screen">
@@ -95,35 +96,35 @@ p {
 			{% for browser in suggest %}
 				{% if browser|lower == "chrome" %}
 				<li>
-					<a href="http://www.google.com/chrome"><img src="{{ STATIC_URL }}django-badbrowser/browser_chrome.gif"></a>
+                    <a href="http://www.google.com/chrome"><img src="{% static 'django-badbrowser/browser_chrome.gif' %}"></a>
 					<a href="http://www.google.com/chrome"><span>Chrome</span></a>
 				</li>
 				{% endif %}
 				
 				{% if browser|lower == "firefox" %}
 				<li>
-					<a href="http://firefox.com"><img src="{{ STATIC_URL }}django-badbrowser/browser_firefox.gif"></a>
+                    <a href="http://firefox.com"><img src="{% static 'django-badbrowser/browser_firefox.gif' %}"></a>
 					<a href="http://firefox.com"><span>Firefox</span></a>
 				</li>
 				{% endif %}
 				
 				{% if browser|lower == "safari" %}
 				<li>
-					<a href="http://www.apple.com/safari/download/"><img src="{{ STATIC_URL }}django-badbrowser/browser_safari.gif"></a>
+                    <a href="http://www.apple.com/safari/download/"><img src="{% static 'django-badbrowser/browser_safari.gif' %}"></a>
 					<a href="http://www.apple.com/safari/download/"><span>Safari</span></a>
 				</li>
 				{% endif %}
 				
 				{% if browser|lower == "opera" %}
 				<li>
-					<a href="http://www.opera.com/"><img src="{{ STATIC_URL }}django-badbrowser/browser_opera.gif"></a>
+                    <a href="http://www.opera.com/"><img src="{% static 'django-badbrowser/browser_opera.gif' %}"></a>
 					<a href="http://www.opera.com/"><span>Opera</span></a>
 				</li>
 				{% endif %}
 				
 				{% if browser|lower == "ie" or browser|lower == "internet explorer" or browser|lower == "microsoft internet explorer" %}
 				<li>
-					<a href="http://www.microsoft.com/uk/windows/internet-explorer/"><img src="{{ STATIC_URL }}django-badbrowser/browser_ie.gif"></a>
+                    <a href="http://www.microsoft.com/uk/windows/internet-explorer/"><img src="{% static 'django-badbrowser/browser_ie.gif' %}"></a>
 					<a href="http://www.microsoft.com/uk/windows/internet-explorer/"><span>Internet Explorer</span></a>
 				</li>
 				{% endif %}
@@ -132,7 +133,7 @@ p {
 		{% endblock %}
 		
 		{% block unsupported_ignore %}
-		<p id="ignore">{% trans "You may" %} <a href="{% url django-badbrowser-ignore %}?next={{ next|urlencode }}"> {% trans "ignore this warning" %}</a> {% trans "at your own peril." %}</p>
+		<p id="ignore">{% trans "You may" %} <a href="{% url 'django-badbrowser-ignore' %}?next={{ next|urlencode }}"> {% trans "ignore this warning" %}</a> {% trans "at your own peril." %}</p>
 		{% endblock %}
 	</div>
 	
