@@ -1,5 +1,17 @@
 ----
 
+Version 1.0.8, Tue 31 Dec 2013
+==============================
+
+6252874a06      Update readme - symlinking not needed any more (Andy Baker)
+9d23844b83      Fallback to dict if httpagentparser.Result is not there (Unai Zalakain)
+125fa60cc6      Use new static and url built-in template tags (Unai Zalakain)
+0eb8e26bdb      Spanish translation (Unai Zalakain)
+885868ff05      Basque translation (Unai Zalakain)
+5368e6852c      Accept browsers not in requirements list (Tony Abou-Assaleh)
+090622ac26      Internationalization (English, Russian languages) (art-zhitnik)
+6bd2d070ee      Update README.textile (art-zhitnik)
+
 Version 1.0.7, Fri 16 Mar 2012
 ===============================
 
