@@ -17,6 +17,7 @@ django_badbrowser.egg-info
 .python-eggs/
 .sudo_as_admin_successful
 .vim
+.idea
 
 pip-log.txt
 nosetests.xml
@@ -30,4 +31,5 @@ env_*
 log
 .DS_Store
 
-
+build/
+dist/

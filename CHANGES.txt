@@ -1,5 +1,10 @@
 ----
 
+Greg's changes
+==============
+
+acef841784      Removed deprecated django.conf.urls.defaults reference (Greg Taylor)
+
 Version 1.0.8, Tue 31 Dec 2013
 ==============================
 
