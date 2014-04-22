@@ -1,5 +1,6 @@
 __version__ = "1.0.7"
 
+
 def check_user_agent(user_agent, requirements):
     import httpagentparser
     from pkg_resources import parse_version

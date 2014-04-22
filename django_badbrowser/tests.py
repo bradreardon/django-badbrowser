@@ -9,6 +9,7 @@ from django.core.urlresolvers import reverse
 from django_badbrowser import check_user_agent
 from django_badbrowser.middleware import BrowserSupportDetection
 
+
 class BrowserSupportDetectionTest(TestCase):
     
     def test_valid(self):
@@ -72,7 +73,7 @@ class IgnoreViewTest(TestCase):
         settings.BADBROWSER_REQUIREMENTS = (("Firefox", "3"),)
         
         c = Client()
-        response = c.get(reverse("django-badbrowser-ignore"), HTTP_USER_AGENT="Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.7.5) Gecko/20050814 Firefox/1.0")
+        c.get(reverse("django-badbrowser-ignore"), HTTP_USER_AGENT="Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.7.5) Gecko/20050814 Firefox/1.0")
         self.assertTrue("badbrowser_ignore" in c.cookies)
         self.assertTrue(bool(c.cookies["badbrowser_ignore"].value))
     
@@ -80,25 +81,25 @@ class IgnoreViewTest(TestCase):
         settings.BADBROWSER_REQUIREMENTS = (("Firefox", "3"),)
         
         c = Client()
-        response = c.get(reverse("django-badbrowser-ignore"), HTTP_USER_AGENT="Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.7.5) Gecko/20050814 Firefox/1.0")
+        c.get(reverse("django-badbrowser-ignore"), HTTP_USER_AGENT="Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.7.5) Gecko/20050814 Firefox/1.0")
         self.assertTrue("badbrowser_ignore" in c.cookies)
         self.assertTrue(bool(c.cookies["badbrowser_ignore"].value))
         
-        response = c.get("/", HTTP_USER_AGENT="Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.7.5) Gecko/20050814 Firefox/3.0")
+        c.get("/", HTTP_USER_AGENT="Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.7.5) Gecko/20050814 Firefox/3.0")
         self.assertFalse(bool(c.cookies["badbrowser_ignore"].value))
     
     def test_ignore_then_ok_then_ignore(self):
         settings.BADBROWSER_REQUIREMENTS = (("Firefox", "3"),)
         
         c = Client()
-        response = c.get(reverse("django-badbrowser-ignore"), HTTP_USER_AGENT="Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.7.5) Gecko/20050814 Firefox/1.0")
+        c.get(reverse("django-badbrowser-ignore"), HTTP_USER_AGENT="Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.7.5) Gecko/20050814 Firefox/1.0")
         self.assertTrue("badbrowser_ignore" in c.cookies)
         self.assertTrue(bool(c.cookies["badbrowser_ignore"].value))
         
-        response = c.get("/", HTTP_USER_AGENT="Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.7.5) Gecko/20050814 Firefox/3.0")
+        c.get("/", HTTP_USER_AGENT="Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.7.5) Gecko/20050814 Firefox/3.0")
         self.assertFalse(bool(c.cookies["badbrowser_ignore"].value))
         
-        response = c.get(reverse("django-badbrowser-ignore"), HTTP_USER_AGENT="Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.7.5) Gecko/20050814 Firefox/1.0")
+        c.get(reverse("django-badbrowser-ignore"), HTTP_USER_AGENT="Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.7.5) Gecko/20050814 Firefox/1.0")
         self.assertTrue("badbrowser_ignore" in c.cookies)
         self.assertTrue(bool(c.cookies["badbrowser_ignore"].value))
     
@@ -115,7 +116,7 @@ class CheckUserAgentTest(TestCase):
     
     def _get_ua_strings(self, file_):
         path = "%s/uastrings/%s.txt" % (os.path.dirname(__file__), file_)
-        f = open(path, "r")
+        f = open(path)
         lines = f.readlines()
         f.close()
         return lines
@@ -180,13 +181,15 @@ class CheckUserAgentTest(TestCase):
             self.assertFalse(check_user_agent(user_agent, requirements))
     
     def test_user_agents_ie7b_ok(self):
-        requirements = (("Microsoft Internet Explorer", "7b"),) # "7a" or "7b" will allow beta, "7" will not
+        # "7a" or "7b" will allow beta, "7" will not
+        requirements = (("Microsoft Internet Explorer", "7b"),)
         
         for user_agent in self._get_ua_strings("ie7b"):
             self.assertTrue(check_user_agent(user_agent, requirements), "Failed for ua '%s'" % user_agent)
     
     def test_user_agents_ie7b_bad(self):
-        requirements = (("Microsoft Internet Explorer", "7.0"),) # "7a" or "7b" will allow beta, "7" will not
+        # "7a" or "7b" will allow beta, "7" will not
+        requirements = (("Microsoft Internet Explorer", "7.0"),)
         
         for user_agent in self._get_ua_strings("ie7b"):
             self.assertFalse(check_user_agent(user_agent, requirements), "Failed for ua '%s'" % user_agent)
@@ -240,38 +243,15 @@ class CheckUserAgentTest(TestCase):
             self.assertFalse(check_user_agent(user_agent, requirements), "Failed for ua '%s'" % user_agent)
     
     def test_user_agents_ff_3_1_b_3_ok(self):
-        requirements = (("fireFox", "3.1 beta 3"),) # "3.1b3" will not work here
+         # "3.1b3" will not work here
+        requirements = (("fireFox", "3.1 beta 3"),)
         
         for user_agent in self._get_ua_strings("ff3.1b3"):
             self.assertTrue(check_user_agent(user_agent, requirements), "Failed for ua '%s'" % user_agent)
     
     def test_user_agents_ff_3_1_b_3_bad(self):
-        requirements = (("FIREFOX", "3.1"),) # "3.1 beta 4" will not work here
+        # "3.1 beta 4" will not work here
+        requirements = (("FIREFOX", "3.1"),)
         
         for user_agent in self._get_ua_strings("ff3.1b3"):
             self.assertFalse(check_user_agent(user_agent, requirements), "Failed for ua '%s'" % user_agent)
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

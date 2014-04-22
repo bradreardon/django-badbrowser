@@ -6,6 +6,7 @@ from django.core.urlresolvers import reverse
 from django_badbrowser.views import unsupported
 from django_badbrowser import check_user_agent
 
+
 class BrowserSupportDetection(object):
     
     def _user_ignored_warning(self, request):
@@ -30,15 +31,18 @@ class BrowserSupportDetection(object):
         request.browser = parsed_user_agent
         
         if not hasattr(settings, "BADBROWSER_REQUIREMENTS"):
-            return None # no requirements have been setup
+            # no requirements have been setup
+            return None
         
         if request.path == reverse("django-badbrowser-ignore"):
             # Allow through any requests for the ignore page
             return None
         
         if check_user_agent(parsed_user_agent, settings.BADBROWSER_REQUIREMENTS):
+            # noinspection PyAttributeOutsideInit
             self._clear_cookie = True
-            return None # continue as normal
+            # continue as normal
+            return None
         else:
             if self._user_ignored_warning(request):
                 return None 
@@ -49,6 +53,3 @@ class BrowserSupportDetection(object):
         if hasattr(self, "_clear_cookie") and self._clear_cookie:
             response.delete_cookie("badbrowser_ignore")
         return response
-    
-
-

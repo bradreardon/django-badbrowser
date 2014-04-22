@@ -14,6 +14,7 @@ def unsupported(request):
     
     return render_to_response("django_badbrowser/unsupported.html", context)
 
+
 def ignore(request):
     response = HttpResponseRedirect(request.GET.get("next", "") or "/")
     response.set_cookie("badbrowser_ignore", "1")
