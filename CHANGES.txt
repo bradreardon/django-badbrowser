@@ -1,7 +1,7 @@
 ----
 
-Greg's changes
-==============
+Greg's changes (1.0.9)
+======================
 
 6de8af248e      PEP8 pass on the whole codebase (Greg Taylor)
 acef841784      Removed deprecated django.conf.urls.defaults reference (Greg Taylor)
