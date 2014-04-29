@@ -1,5 +1,10 @@
 ----
 
+Greg's changes (1.0.10)
+=======================
+
+b7583f796a      Remove internationalization template tags for now.
+
 Greg's changes (1.0.9)
 ======================
 
