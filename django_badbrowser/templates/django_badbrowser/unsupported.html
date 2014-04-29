@@ -1,6 +1,5 @@
 {% extends base_template %}
-{% load i18n static %}
-{% load url from future %}
+{% load static %}
 
 {% block extra_head %}
 <style type="text/css" media="screen">
@@ -81,13 +80,13 @@ p {
 <div id="browser-unsupported">
 	<div id="wrapper">
 		{% block unsupported_message %}
-		<h1>{% trans "Unsupported web browser" %}</h1>
+		<h1>Unsupported web browser</h1>
 		<p>
-			{% trans "Thank you much for coming by, but unfortunately we are unable to support your web browser." %}
+			Thank you much for coming by, but unfortunately we are unable to support your web browser.
 		</p>
 	
 		<p>
-			{% trans "We recommend the latest version of any of these browsers" %}:
+			We recommend the latest version of any of these browsers:
 		</p>
 		{% endblock %}
 		
@@ -133,7 +132,7 @@ p {
 		{% endblock %}
 		
 		{% block unsupported_ignore %}
-		<p id="ignore">{% trans "You may" %} <a href="{% url 'django-badbrowser-ignore' %}?next={{ next|urlencode }}"> {% trans "ignore this warning" %}</a> {% trans "at your own peril." %}</p>
+		<p id="ignore">You may <a href="{% url 'django-badbrowser-ignore' %}?next={{ next|urlencode }}"> ignore this warning</a> at your own peril.</p>
 		{% endblock %}
 	</div>
 	
