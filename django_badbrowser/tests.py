@@ -6,8 +6,8 @@ from django.http import HttpRequest
 from django.test.client import Client
 from django.core.urlresolvers import reverse
 
-from django_badbrowser import check_user_agent
 from django_badbrowser.middleware import BrowserSupportDetection
+from user_agent_checking import check_user_agent
 
 
 class BrowserSupportDetectionTest(TestCase):

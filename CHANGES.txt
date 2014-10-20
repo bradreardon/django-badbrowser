@@ -1,5 +1,12 @@
 ----
 
+Greg's changes (1.0.11)
+=======================
+
+06c2fe5ebb      Don't attempt to clear the badbrowser_ignore cookie if it
+                isn't already present. This should make django-badbrowser play
+                much more nicely with Varnish and other caches. (Greg Taylor)
+
 Greg's changes (1.0.10)
 =======================
 
@@ -29,18 +36,15 @@ Version 1.0.7, Fri 16 Mar 2012
 e006a4eb5d	Minor refactoring and whitespace tweaking (Adam Charnock)
 a9d142a679	A little refactoring and fixing image URLs (Adam Charnock)
 
-
 Version 1.0.6, Fri 16 Mar 2012
 ===============================
 
 84bee7c18a	Some templating corrections (Adam Charnock)
 
-
 Version 1.0.5, Fri 16 Mar 2012
 ===============================
 
 6517f95a2c	Setting up static files correctly (Adam Charnock)
-
 
 Version 1.0.4, Fri 16 Mar 2012
 ===============================

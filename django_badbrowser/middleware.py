@@ -3,8 +3,8 @@ import httpagentparser
 from django.conf import settings
 from django.core.urlresolvers import reverse
 
-from django_badbrowser.views import unsupported
-from django_badbrowser import check_user_agent
+from . views import unsupported
+from . user_agent_checking import check_user_agent
 
 
 class BrowserSupportDetection(object):
