@@ -6,6 +6,8 @@ Greg's changes (1.0.11)
 06c2fe5ebb      Don't attempt to clear the badbrowser_ignore cookie if it
                 isn't already present. This should make django-badbrowser play
                 much more nicely with Varnish and other caches. (Greg Taylor)
+76f2b12f1b      Split check_user_agent() out of __init__. Avoids the
+                function-level imports that smell funky. (Greg Taylor)
 
 Greg's changes (1.0.10)
 =======================
