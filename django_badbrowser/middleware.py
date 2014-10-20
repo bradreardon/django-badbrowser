@@ -10,8 +10,12 @@ from django_badbrowser import check_user_agent
 class BrowserSupportDetection(object):
     
     def _user_ignored_warning(self, request):
-        """Has the user forced ignoring the browser warning"""
-        return "badbrowser_ignore" in request.COOKIES and request.COOKIES["badbrowser_ignore"]
+        """
+        :rtype: bool
+        :returns: True if the user has opted to ignore the browser warning.
+        """
+
+        return request.COOKIES.get("badbrowser_ignore", False)
     
     def process_request(self, request):
         self._clear_cookie = False
@@ -50,6 +54,9 @@ class BrowserSupportDetection(object):
             return unsupported(request)
     
     def process_response(self, request, response):
-        if hasattr(self, "_clear_cookie") and self._clear_cookie:
+        clear_cookie = getattr(self, "_clear_cookie", False)
+        if clear_cookie and self._user_ignored_warning(request):
+            # Only attempt to clear the cookie if said cookie is present.
+            # Helps to play more nicely with Varnish.
             response.delete_cookie("badbrowser_ignore")
         return response
