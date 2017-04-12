@@ -1,8 +1,8 @@
-from django.conf.urls import url, patterns
+from django.conf.urls import url
 
 from django_badbrowser.views import ignore, unsupported
 
-urlpatterns = patterns("",
+urlpatterns = [
     url(r"^$", unsupported, name="django-badbrowser-unsupported"),
     url(r"^ignore/$", ignore, name="django-badbrowser-ignore"),
-)
+]
