@@ -1,7 +1,7 @@
 import httpagentparser
 
 from django.conf import settings
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 
 from . views import unsupported
 from . user_agent_checking import check_user_agent
