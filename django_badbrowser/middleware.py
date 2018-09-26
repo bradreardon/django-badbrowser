@@ -2,12 +2,13 @@ import httpagentparser
 
 from django.conf import settings
 from django.urls import reverse
+from django.utils.deprecation import MiddlewareMixin
 
 from . views import unsupported
 from . user_agent_checking import check_user_agent
 
 
-class BrowserSupportDetection(object):
+class BrowserSupportDetection(MiddlewareMixin):
     
     def _user_ignored_warning(self, request):
         """
